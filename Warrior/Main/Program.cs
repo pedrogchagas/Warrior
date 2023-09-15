@@ -27,7 +27,7 @@ namespace Warrior
 
                 if (enemyChoice == "1")
                 {
-                    enemyWarrior = CreateRandomEnemy();
+                    enemyWarrior = CreateRandomEnemy(playerFaction);
                 }
                 else
                 {
@@ -48,7 +48,9 @@ namespace Warrior
                 {
                     Console.WriteLine("Pressione Enter para atacar o inimigo.");
                     Console.ReadLine();
+
                     int playerDamage = playerWarrior.CalculateDamage(enemyWarrior.Armor.ArmorPoints) + playerRandomDamage;
+
                     enemyWarrior.TakeDamage(playerDamage);
 
                     Console.WriteLine($"{playerWarrior.Name} ataca {enemyWarrior.Name} causando {playerDamage} de dano.");
@@ -78,6 +80,7 @@ namespace Warrior
                 }
 
                 Console.WriteLine("Deseja jogar novamente? (Digite 'sim' para jogar novamente, ou qualquer outra coisa para sair):");
+
                 string restartChoice = Console.ReadLine().ToLower();
                 if (restartChoice != "sim")
                 {
@@ -167,14 +170,15 @@ namespace Warrior
 
 
 
-        static Warrior CreateRandomEnemy()
+        static Warrior CreateRandomEnemy(Faction playerFaction)
         {
             Random random = new Random();
-            string[] enemyNames = { "Inimigo1", "Inimigo2", "Inimigo3" }; // Adicione mais nomes de inimigos, se desejar
-            string enemyName = enemyNames[random.Next(enemyNames.Length)];
-            Faction enemyFaction = random.Next(2) == 0 ? Faction.GoodGuy : Faction.BadGuy; // Aleatoriamente escolha a facção
+
+            string enemyName = "Inimigo Aleatório";
+            Faction enemyFaction = playerFaction == Faction.GoodGuy ? Faction.BadGuy : Faction.GoodGuy;
             Weapon enemyWeapon = GetRandomWeapon(); // Função para escolher uma arma aleatória
             Armor enemyArmor = GetRandomArmor(); // Função para escolher uma armadura aleatória
+
             return new Warrior(enemyName, enemyFaction, enemyWeapon, enemyArmor);
         }
 
