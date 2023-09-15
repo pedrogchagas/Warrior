@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\Armor.cs" />
+    <Compile Include="Enums\EnumFaction.cs" />
+    <Compile Include="Classes\Weapon.cs" />
+    <Compile Include="Classes\Warrior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
